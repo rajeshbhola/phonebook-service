@@ -53,7 +53,7 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<ContactDto> createContact(@RequestBody ContactDto contactDto) {
+    public ResponseEntity<ContactDto> createContact(@jakarta.validation.Valid @RequestBody ContactDto contactDto) {
         logger.info("Creating new contact: {}", contactDto.getName());
         Contact contact = new Contact();
         contact.setName(contactDto.getName());
@@ -108,7 +108,7 @@ public class ContactController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContactDto> updateContact(@PathVariable Long id, @RequestBody ContactDto contactDto) {
+    public ResponseEntity<ContactDto> updateContact(@PathVariable Long id, @jakarta.validation.Valid @RequestBody ContactDto contactDto) {
         logger.info("Updating contact with ID: {}", id);
         Contact existingContact = contactService.getContact(id);
         if (existingContact == null) {
